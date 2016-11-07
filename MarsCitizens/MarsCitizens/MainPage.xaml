@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:MarsCitizens"
              x:Class="MarsCitizens.MainPage">
 
-  <Label Text="Welcome to Xamarin Forms!"
+  <Label Text="Welcome to Mars Citizens!"
            VerticalOptions="Center"
            HorizontalOptions="Center" />
 
