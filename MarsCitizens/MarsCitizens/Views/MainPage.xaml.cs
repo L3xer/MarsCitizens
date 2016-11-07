@@ -1,5 +1,4 @@
 ﻿using Xamarin.Forms;
-using MarsCitizens.ViewModels;
 
 namespace MarsCitizens.Views
 {
@@ -7,8 +6,6 @@ namespace MarsCitizens.Views
     {
         public MainPage()
         {
-            BindingContext = new MainPageViewModel();
-
             InitializeComponent();
         }
     }
