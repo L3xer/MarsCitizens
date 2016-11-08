@@ -1,38 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:a="clr-namespace:MarsCitizens.Extensions;assembly=MarsCitizens"
              x:Class="MarsCitizens.Views.MainPage"
              BackgroundColor="Black"
              BindingContext="{Binding MainViewModel, Source={StaticResource Locator}}">
-  <RelativeLayout>
-    <Image Source="mars_planet.png" Opacity="0.6"
-                RelativeLayout.WidthConstraint=
-                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
-                RelativeLayout.HeightConstraint=
-                  "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
-    <Grid RelativeLayout.WidthConstraint=
-              "{ConstraintExpression Type=RelativeToParent, Property=Width}"
-            RelativeLayout.HeightConstraint=
-              "{ConstraintExpression Type=RelativeToParent, Property=Height}">
-
-      <Label  Text="{Binding CitizenCount}"
-              VerticalOptions="Center"
-              HorizontalOptions="Center"
-              FontSize="120"
-              TextColor="White"/>
-    </Grid>
+  <AbsoluteLayout>
+    <StackLayout AbsoluteLayout.LayoutBounds="0,1,-1,-1"
+        AbsoluteLayout.LayoutFlags="PositionProportional">
+      <a:AspectRatioContainer AspectRatio="0.75" VerticalOptions="End">
+        <Image Source="mars_planet.png"
+               Opacity="0.4"
+               Aspect ="Fill"/>
+      </a:AspectRatioContainer>
+    </StackLayout>
+    <Label Text="{Binding CitizenCount}"
+           FontSize="120"
+           TextColor="White"
+           AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+           AbsoluteLayout.LayoutFlags="PositionProportional"/>
     <AbsoluteLayout IsVisible="{Binding IsBusy}"
-                 Padding="32"
-                 RelativeLayout.WidthConstraint=
-                    "{ConstraintExpression Type=RelativeToParent, Property=Width}"
-                 RelativeLayout.HeightConstraint=
-                    "{ConstraintExpression Type=RelativeToParent, Property=Height}"
-                 BackgroundColor="#90000000">
+                     Padding="32"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    BackgroundColor="#90000000">
       <ActivityIndicator
         IsRunning="{Binding IsBusy}"
         Color="#FFFFFF"
         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
         AbsoluteLayout.LayoutFlags="PositionProportional" />
     </AbsoluteLayout>
-  </RelativeLayout>
+  </AbsoluteLayout>
 </ContentPage>
