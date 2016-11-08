@@ -9,6 +9,6 @@ namespace MarsCitizens.Contracts.Repository
     {
         Task<Result<IEnumerable<Citizien>>> GetAllAsync();
 
-        Task<Result<int>> GetCount();
+        Task<Result<int>> GetCountAsync();
     }
 }

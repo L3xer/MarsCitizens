@@ -11,7 +11,7 @@ namespace MarsCitizens.Repositories
 {
     public class CitizensRepository : ICitizensRepository
     {
-        private readonly string url = "https://www.dropbox.com/s/vt4ra077675fve7/citiziens.json";
+        private readonly string url = "https://dl.dropboxusercontent.com/s/vt4ra077675fve7/citiziens.json";
 
         private IDataService _dataService;
         private IEnumerable<Citizien> cache;
@@ -35,7 +35,7 @@ namespace MarsCitizens.Repositories
             return Result.Ok(result.Value);
         }
 
-        public async Task<Result<int>> GetCount()
+        public async Task<Result<int>> GetCountAsync()
         {
             var result = await GetCitizensAsync();
             if (result.IsFailure)

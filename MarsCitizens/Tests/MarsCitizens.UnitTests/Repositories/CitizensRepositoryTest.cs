@@ -41,7 +41,7 @@ namespace MarsCitizens.UnitTests.Repositories
         [Test]
         public async Task CitizensRepository_GetCount_ReturnsCountOfCitizens()
         {
-            var result = await defaultRepository.GetCount();
+            var result = await defaultRepository.GetCountAsync();
 
             Assert.That(result.Value, Is.EqualTo(2));
         }
@@ -49,7 +49,7 @@ namespace MarsCitizens.UnitTests.Repositories
         [Test]
         public async Task CitizensRepository_GetCount_FailsIfDataServiceIsEmpty()
         {
-            var result = await emptyRepository.GetCount();
+            var result = await emptyRepository.GetCountAsync();
 
             Assert.That(result.IsFailure, Is.True);
         }
