@@ -12,13 +12,13 @@
           AbsoluteLayout.LayoutFlags="PositionProportional">
         <a:AspectRatioContainer AspectRatio="0.75" VerticalOptions="End">
           <Image Source="mars_planet.png"
-                 Opacity="0.4"
+                 Opacity="0.6"
                  Aspect ="Fill"/>
         </a:AspectRatioContainer>
       </StackLayout>
 
       <abstractions:RoundedBoxView
-        BackgroundColor="#40575757"
+        BackgroundColor="#60575757"
         HeightRequest="80"
         WidthRequest="80"
         CornerRadius="80"
@@ -31,7 +31,7 @@
                AbsoluteLayout.LayoutBounds="0.5,0.3,-1,-1"
                AbsoluteLayout.LayoutFlags="PositionProportional"/>
       <abstractions:RoundedBoxView
-        BackgroundColor="#40575757"
+        BackgroundColor="#60575757"
         HeightRequest="200"
         WidthRequest="200"
         CornerRadius="150"
@@ -39,7 +39,7 @@
         AbsoluteLayout.LayoutFlags="PositionProportional"/>
 
       <abstractions:RoundedBoxView
-        BackgroundColor="#40575757"
+        BackgroundColor="#60575757"
         HeightRequest="80"
         WidthRequest="80"
         CornerRadius="80"

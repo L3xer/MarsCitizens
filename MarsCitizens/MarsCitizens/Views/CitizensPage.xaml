@@ -1,6 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MarsCitizens.Views.CitiziensPage">
-  <Label Text="Hi Citiziens!" VerticalOptions="Center" HorizontalOptions="Center" />
+             x:Class="MarsCitizens.Views.CitiziensPage"
+             BindingContext="{Binding CitizensViewModel, Source={StaticResource Locator}}">
+  <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <ListView ItemsSource="{Binding Citizens}"
+                RowHeight="66"
+                x:Name="_citizensListView"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,1,1">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding Name}" />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <AbsoluteLayout IsVisible="{Binding IsBusy}"
+                      Padding="32"
+                      AbsoluteLayout.LayoutFlags="All"
+                      AbsoluteLayout.LayoutBounds="0,0,1,1"
+                      BackgroundColor="#90000000">
+      <ActivityIndicator
+        IsRunning="{Binding IsBusy}"
+        Color="#FFFFFF"
+        AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+        AbsoluteLayout.LayoutFlags="PositionProportional" />
+    </AbsoluteLayout>
+  </AbsoluteLayout>
 </ContentPage>

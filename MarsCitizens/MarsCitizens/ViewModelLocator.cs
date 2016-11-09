@@ -14,13 +14,15 @@ namespace MarsCitizens
         private readonly IUnityContainer _unityContainer;
 
         public MainViewModel MainViewModel => _unityContainer.Resolve<MainViewModel>();
+        public CitizensViewModel CitizensViewModel => _unityContainer.Resolve<CitizensViewModel>();
 
         public ViewModelLocator()
         {
            _unityContainer = new UnityContainer()
                 .RegisterType<IDataService, DataService>()
                 .RegisterType<ICitizensRepository, CitizensRepository>()
-                .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager());
+                .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
+                .RegisterType<CitizensViewModel>(new ContainerControlledLifetimeManager());
 
             var unityServiceLocator = new UnityServiceLocator(_unityContainer);
 

@@ -1,14 +1,37 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.Threading.Tasks;
+using MvvmHelpers;
+using MarsCitizens.Contracts.Repository;
+using MarsCitizens.Models;
+using MarsCitizens.Extensions;
+
 
 namespace MarsCitizens.ViewModels
 {
-    public class CitizensViewModel : INotifyPropertyChanged
+    public class CitizensViewModel : BaseViewModel
     {
+        private ICitizensRepository _citizensRepository;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableRangeCollection<Citizien> Citizens { get; } = new ObservableRangeCollection<Citizien>();
 
-        public void OnPropertyChanged([CallerMemberName]string name = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        public CitizensViewModel(ICitizensRepository citizensRepository)
+        {
+            _citizensRepository = citizensRepository;
+        }
+
+        public async Task<Result> GetCitizensAsync()
+        {
+            IsBusy = true;
+
+            var result = await _citizensRepository.GetAllAsync();
+
+            IsBusy = false;
+
+            if (result.IsFailure)
+                return Result.Fail(result.Error);
+
+            Citizens.ReplaceRange(result.Value);
+
+            return Result.Ok();
+        }
     }
 }

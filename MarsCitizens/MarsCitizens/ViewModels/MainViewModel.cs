@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using MvvmHelpers;
 using MarsCitizens.Extensions;
 using MarsCitizens.Contracts.Repository;
 
 
 namespace MarsCitizens.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
         private ICitizensRepository _citizensRepository;
 
@@ -15,16 +16,8 @@ namespace MarsCitizens.ViewModels
         public string CitizenCount
         {
             get { return _citizenCount; }
-            set { _citizenCount = value; OnPropertyChanged(); }
-        }
-
-
-        bool _isBusy = false;
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { _isBusy = value; OnPropertyChanged(); }
-        }
+            set { SetProperty(ref _citizenCount, value); }
+        }      
 
         public MainViewModel(ICitizensRepository citizensRepository)
         {
@@ -46,11 +39,5 @@ namespace MarsCitizens.ViewModels
 
             return Result.Ok();
         }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName]string name = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }
