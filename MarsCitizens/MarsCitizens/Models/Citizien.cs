@@ -10,8 +10,10 @@ namespace MarsCitizens.Models
 
         public string Thumbnail { get; set; }
 
-        public string LivingDays => $"{(DateTime.Today - LandingDate).Days} Days on Mars";
+        public string Wiki { get; set; }
 
-        public DateTime LandingDate { get; set; }
+        public DateTime LandingDate { get; set; }        
+
+        public string LivingDays => $"{(DateTime.Today - LandingDate).Days} Days on Mars";
     }
 }

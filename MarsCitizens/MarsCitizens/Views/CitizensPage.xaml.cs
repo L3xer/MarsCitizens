@@ -1,5 +1,8 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using MarsCitizens.ViewModels;
+using MarsCitizens.Models;
+
 
 namespace MarsCitizens.Views
 {
@@ -13,6 +16,10 @@ namespace MarsCitizens.Views
             Title = "Citizens";
 
             _viewModel = BindingContext as CitizensViewModel;
+
+            _citizensListView.ItemTapped += (sender, e) => {
+                Device.OpenUri(new Uri((e.Item as Citizien).Wiki)); 
+            };
         }
 
         protected override async void OnAppearing()
