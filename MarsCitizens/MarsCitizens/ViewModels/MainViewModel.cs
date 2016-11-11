@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MvvmHelpers;
 using MarsCitizens.Extensions;
 using MarsCitizens.Contracts.Repository;
