@@ -2,16 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MarsCitizens.Views.CitiziensPage"
+             BackgroundColor="White"
              BindingContext="{Binding CitizensViewModel, Source={StaticResource Locator}}">
   <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
     <ListView ItemsSource="{Binding Citizens}"
-                RowHeight="66"
+                RowHeight="65"
                 x:Name="_citizensListView"
                 AbsoluteLayout.LayoutFlags="All"
                 AbsoluteLayout.LayoutBounds="0,0,1,1">
       <ListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding Name}" />
+          <ViewCell>
+            <Grid Padding="2" Margin="2">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+              </Grid.ColumnDefinitions>
+
+              <Image  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Aspect="AspectFill">
+                <Image.Source>
+                  <UriImageSource Uri="{Binding Thumbnail}" CachingEnabled="True" CacheValidity="1000"/>
+                </Image.Source>
+              </Image>
+              <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" TextColor="Black" Font="Large" LineBreakMode="TailTruncation"></Label>
+              <Label Grid.Row="1" Grid.Column="1" Text="{Binding LivingDays}" TextColor="Gray" LineBreakMode="TailTruncation"></Label>
+            </Grid>
+          </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>

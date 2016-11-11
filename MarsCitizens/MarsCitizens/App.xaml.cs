@@ -8,8 +8,11 @@ namespace MarsCitizens
         public App()
         {
             InitializeComponent();
+            
+            var navigationPage = new NavigationPage(new MainPage());
+            navigationPage.BarBackgroundColor = Color.FromHex("#d32f2f");
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = navigationPage;
         }
 
         protected override void OnStart()

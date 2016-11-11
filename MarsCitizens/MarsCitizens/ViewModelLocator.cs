@@ -20,7 +20,7 @@ namespace MarsCitizens
         {
            _unityContainer = new UnityContainer()
                 .RegisterType<IDataService, DataService>()
-                .RegisterType<ICitizensRepository, CitizensRepository>()
+                .RegisterType<ICitizensRepository, CitizensRepository>()                
                 .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
                 .RegisterType<CitizensViewModel>(new ContainerControlledLifetimeManager());
 

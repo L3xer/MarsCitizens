@@ -47,10 +47,10 @@ namespace MarsCitizens.Repositories
         private async Task<Result<IEnumerable<Citizien>>> GetCitizensAsync()
         {
             if (IsCacheEmpty)
-                cache = (await _dataService.GetAsync<List<Citizien>>(url));
+                cache = (await _dataService.GetAsync<List<Citizien>>(url))?.OrderByDescending(x => x.LandingDate);
 
             if (IsCacheEmpty)
-                return Result.Fail<IEnumerable<Citizien>>("Network problems. Please try again later.");
+                return Result.Fail<IEnumerable<Citizien>>("Network problems. Please try again later.");           
 
             return Result.Ok(cache);
         }
