@@ -17,8 +17,8 @@ namespace MarsCitizens.Views
 
             _viewModel = BindingContext as CitizensViewModel;
 
-            _citizensListView.ItemTapped += (sender, e) => {
-                Device.OpenUri(new Uri((e.Item as Citizien).Wiki)); 
+            _citizensListView.ItemTapped += async (sender, e) => {
+                await Navigation.PushAsync(new CitizenDetailPage(e.Item as Citizen));
             };
         }
 

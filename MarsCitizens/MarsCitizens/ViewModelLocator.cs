@@ -14,7 +14,10 @@ namespace MarsCitizens
         private readonly IUnityContainer _unityContainer;
 
         public MainViewModel MainViewModel => _unityContainer.Resolve<MainViewModel>();
+
         public CitizensViewModel CitizensViewModel => _unityContainer.Resolve<CitizensViewModel>();
+
+        public CitizenDetailViewModel CitizenDetailViewModel => _unityContainer.Resolve<CitizenDetailViewModel>();
 
         public ViewModelLocator()
         {
@@ -22,7 +25,8 @@ namespace MarsCitizens
                 .RegisterType<IDataService, DataService>()
                 .RegisterType<ICitizensRepository, CitizensRepository>()                
                 .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
-                .RegisterType<CitizensViewModel>(new ContainerControlledLifetimeManager());
+                .RegisterType<CitizensViewModel>(new ContainerControlledLifetimeManager())
+                .RegisterType<CitizenDetailViewModel>(new ContainerControlledLifetimeManager());
 
             var unityServiceLocator = new UnityServiceLocator(_unityContainer);
 

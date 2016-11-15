@@ -7,7 +7,7 @@ namespace MarsCitizens.Contracts.Repository
 {
     public interface ICitizensRepository
     {
-        Task<Result<IEnumerable<Citizien>>> GetAllAsync();
+        Task<Result<IEnumerable<Citizen>>> GetAllAsync();
 
         Task<Result<int>> GetCountAsync();
     }

@@ -25,7 +25,7 @@
 
               <Image  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Aspect="AspectFill">
                 <Image.Source>
-                  <UriImageSource Uri="{Binding Thumbnail}" CachingEnabled="True" CacheValidity="1000"/>
+                  <UriImageSource Uri="{Binding Thumbnail}" CachingEnabled="True" CacheValidity="5"/>
                 </Image.Source>
               </Image>
               <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" TextColor="Black" Font="Large" LineBreakMode="TailTruncation"></Label>

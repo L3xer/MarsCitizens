@@ -11,7 +11,7 @@ namespace MarsCitizens.ViewModels
     {
         private ICitizensRepository _citizensRepository;
 
-        public ObservableRangeCollection<Citizien> Citizens { get; } = new ObservableRangeCollection<Citizien>();
+        public ObservableRangeCollection<Citizen> Citizens { get; } = new ObservableRangeCollection<Citizen>();
 
         public CitizensViewModel(ICitizensRepository citizensRepository)
         {

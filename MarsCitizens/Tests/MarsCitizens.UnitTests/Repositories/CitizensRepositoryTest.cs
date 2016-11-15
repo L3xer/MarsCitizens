@@ -58,9 +58,9 @@ namespace MarsCitizens.UnitTests.Repositories
         {
             public Task<T> GetAsync<T>(string url) where T : new()
             {
-                return Task.FromResult((T)(object)new List<Citizien>() {
-                    new Citizien { Name = "First" },
-                    new Citizien { Name = "Second" }
+                return Task.FromResult((T)(object)new List<Citizen>() {
+                    new Citizen { Name = "First" },
+                    new Citizen { Name = "Second" }
                 });
             }
         }
