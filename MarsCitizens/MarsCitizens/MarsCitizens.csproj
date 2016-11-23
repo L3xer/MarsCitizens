@@ -38,19 +38,28 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\Repository\IPhotoCameraRepository.cs" />
     <Compile Include="Contracts\Repository\ICitizensRepository.cs" />
     <Compile Include="Contracts\Services\IDataService.cs" />
+    <Compile Include="Dtos\CameraDataDto.cs" />
+    <Compile Include="Dtos\RoverManifestDto.cs" />
     <Compile Include="Extensions\AspectRatioContainer.cs" />
+    <Compile Include="Extensions\InfiniteListView.cs" />
     <Compile Include="Extensions\Result.cs" />
     <Compile Include="Extensions\ResultExtensions.cs" />
+    <Compile Include="Models\Camera.cs" />
     <Compile Include="Models\Citizen.cs" />
+    <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\RoverManifest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CitizensRepository.cs" />
+    <Compile Include="Repositories\PhotoCameraRepository.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\CitizenDetailViewModel.cs" />
     <Compile Include="ViewModels\CitizensViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PhotosListViewModel.cs" />
     <Compile Include="Views\CitizenDetailPage.xaml.cs">
       <DependentUpon>CitizenDetailPage.xaml</DependentUpon>
     </Compile>
@@ -59,6 +68,9 @@
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhotosListPage.xaml.cs">
+      <DependentUpon>PhotosListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +92,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.5\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.2.5\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.5\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -137,6 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\CitizenDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PhotosListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

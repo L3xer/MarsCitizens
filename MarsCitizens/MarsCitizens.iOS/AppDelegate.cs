@@ -2,6 +2,7 @@
 using UIKit;
 
 using RoundedBoxView.Forms.Plugin.iOSUnified;
+using FFImageLoading.Forms.Touch;
 
 namespace MarsCitizens.iOS
 {
@@ -22,6 +23,7 @@ namespace MarsCitizens.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             RoundedBoxViewRenderer.Init();
+            CachedImageRenderer.Init();
 
             LoadApplication(new App());
 

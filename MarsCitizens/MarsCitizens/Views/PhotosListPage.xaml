@@ -1,15 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MarsCitizens.Views.CitiziensPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:infiniteList="clr-namespace:MarsCitizens.Extensions;assembly=MarsCitizens"
+             x:Class="MarsCitizens.Views.PhotosListPage"
              BackgroundColor="White"
-             BindingContext="{Binding CitizensViewModel, Source={StaticResource Locator}}">
-  <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-    <ListView ItemsSource="{Binding Citizens}"
-                RowHeight="65"
-                x:Name="_citizensListView"
-                AbsoluteLayout.LayoutFlags="All"
-                AbsoluteLayout.LayoutBounds="0,0,1,1">
+             BindingContext="{Binding PhotosListViewModel, Source={StaticResource Locator}}">
+   <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <infiniteList:InfiniteListView x:Name="_photosListView"
+                  ItemsSource="{Binding Photos}"
+                  LoadMoreCommand="{Binding LoadPhotoCommand}"
+                  RowHeight="65"
+                  AbsoluteLayout.LayoutFlags="All"
+                  AbsoluteLayout.LayoutBounds="0,0,1,1">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
@@ -23,18 +26,19 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
               </Grid.ColumnDefinitions>
 
-              <Image  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Aspect="AspectFill">
-                <Image.Source>
-                  <UriImageSource Uri="{Binding Thumbnail}" CachingEnabled="True" CacheValidity="5"/>
-                </Image.Source>
-              </Image>
-              <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" TextColor="Black" Font="Large" LineBreakMode="TailTruncation"></Label>
+              <ffimageloading:CachedImage Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
+			            WidthRequest="80" HeightRequest="80"
+			            DownsampleToViewSize="true"
+			            Source = "{Binding Url}">
+              </ffimageloading:CachedImage>
+
+              <Label Grid.Row="0" Grid.Column="1" Text="{Binding CameraName}" TextColor="Black" Font="Large" LineBreakMode="TailTruncation"></Label>
               <Label Grid.Row="1" Grid.Column="1" Text="{Binding FormattedDescription}" TextColor="Gray" LineBreakMode="TailTruncation"></Label>
             </Grid>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>
-    </ListView>
+    </infiniteList:InfiniteListView>
     <AbsoluteLayout IsVisible="{Binding IsBusy}"
                       Padding="32"
                       AbsoluteLayout.LayoutFlags="All"

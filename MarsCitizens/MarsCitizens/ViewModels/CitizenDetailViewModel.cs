@@ -11,5 +11,7 @@ namespace MarsCitizens.ViewModels
             get { return _citizen; }
             set { _citizen = value; }
         }
+
+        public bool HasPhotos => _citizen.HasPhotos;
     }
 }

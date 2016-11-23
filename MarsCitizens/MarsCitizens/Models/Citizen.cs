@@ -6,6 +6,8 @@ namespace MarsCitizens.Models
     {
         public string Name { get; set; }
 
+        public string NormalizedName { get; set; }
+
         public string Image { get; set; }
 
         public string Thumbnail { get; set; }
@@ -22,6 +24,8 @@ namespace MarsCitizens.Models
 
         public string Status { get; set; }
 
-        public string LivingDays => $"{(DateTime.Today - LandingDate).Days} Days on Mars";
+        public bool HasPhotos { get; set; }
+
+        public string FormattedDescription => $"{(DateTime.Today - LandingDate).Days} Days on Mars{(HasPhotos ? ", has photos" : "")}";
     }
 }

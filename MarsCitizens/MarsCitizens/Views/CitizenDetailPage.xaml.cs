@@ -21,6 +21,10 @@ namespace MarsCitizens.Views
             _moreInfo.Clicked += (sender, e) => {
                 Device.OpenUri(new Uri(citizen.Wiki));
             };
-        }        
+
+            _photos.Clicked += async (sender, e) => {
+                await Navigation.PushAsync(new PhotosListPage(citizen));
+            };
+        }
     }
 }

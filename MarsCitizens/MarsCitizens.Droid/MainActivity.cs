@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 
+using FFImageLoading.Forms.Droid;
 using RoundedBoxView.Forms.Plugin.Droid;
 
 namespace MarsCitizens.Droid
@@ -19,6 +20,8 @@ namespace MarsCitizens.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             RoundedBoxViewRenderer.Init();
+            CachedImageRenderer.Init();
+
             LoadApplication(new App());
         }
     }

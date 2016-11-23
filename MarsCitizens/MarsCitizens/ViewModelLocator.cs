@@ -19,14 +19,18 @@ namespace MarsCitizens
 
         public CitizenDetailViewModel CitizenDetailViewModel => _unityContainer.Resolve<CitizenDetailViewModel>();
 
+        public PhotosListViewModel PhotosListViewModel => _unityContainer.Resolve<PhotosListViewModel>();
+
         public ViewModelLocator()
         {
-           _unityContainer = new UnityContainer()
-                .RegisterType<IDataService, DataService>()
-                .RegisterType<ICitizensRepository, CitizensRepository>()                
-                .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
-                .RegisterType<CitizensViewModel>(new ContainerControlledLifetimeManager())
-                .RegisterType<CitizenDetailViewModel>(new ContainerControlledLifetimeManager());
+            _unityContainer = new UnityContainer()
+                 .RegisterType<IDataService, DataService>()
+                 .RegisterType<ICitizensRepository, CitizensRepository>()
+                 .RegisterType<IPhotoCameraRepository, PhotoCameraRepository>()
+                 .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())
+                 .RegisterType<CitizensViewModel>(new ContainerControlledLifetimeManager())
+                 .RegisterType<CitizenDetailViewModel>(new ContainerControlledLifetimeManager())
+                 .RegisterType<PhotosListViewModel>(new ContainerControlledLifetimeManager());
 
             var unityServiceLocator = new UnityServiceLocator(_unityContainer);
 

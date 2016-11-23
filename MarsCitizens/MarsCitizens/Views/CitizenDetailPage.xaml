@@ -136,7 +136,9 @@
                VerticalOptions="Center"/>
       </Grid>
 
-      <Button Text="PHOTOS"
+      <Button x:Name="_photos" 
+         IsVisible="{Binding HasPhotos}"
+         Text="PHOTOS"
          BackgroundColor="#d32f2f"
          TextColor="White"
          HorizontalOptions="FillAndExpand"
