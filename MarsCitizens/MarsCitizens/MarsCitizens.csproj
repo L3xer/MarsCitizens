@@ -59,7 +59,6 @@
     <Compile Include="Repositories\PhotoCameraRepository.cs" />
     <Compile Include="Services\CitizenService.cs" />
     <Compile Include="Services\DataService.cs" />
-    <Compile Include="Utils\TaskCompletionNotifier.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\CitizenDetailViewModel.cs" />
     <Compile Include="ViewModels\CitizensViewModel.cs" />

@@ -40,11 +40,6 @@ namespace MarsCitizens.Services
             return Result.Ok(result.Value);
         }
 
-        public Task<Result<IEnumerable<Citizen>>> GetThumbnailsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         private async Task<Result<IEnumerable<Citizen>>> GetCitizensAsync()
         {
             IEnumerable<Citizen> citizens = (await _dataService.GetAsync<List<Citizen>>(url))?.OrderByDescending(x => x.LandingDate).ToArray();
