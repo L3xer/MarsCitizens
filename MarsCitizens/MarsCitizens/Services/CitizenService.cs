@@ -1,11 +1,13 @@
-﻿using System;
+﻿using System.IO;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Net.Http;
 using MarsCitizens.Contracts.Services;
 using MarsCitizens.Extensions;
 using MarsCitizens.Models;
-
+using PCLStorage;
 
 
 namespace MarsCitizens.Services
@@ -30,7 +32,17 @@ namespace MarsCitizens.Services
             if (result.IsFailure)
                 return Result.Fail<IEnumerable<Citizen>>(result.Error);
 
+            foreach(var citizen in result.Value) {
+                await DownloadImageIfNotExistsAsync(citizen.Thumbnail);
+            }
+
+
             return Result.Ok(result.Value);
+        }
+
+        public Task<Result<IEnumerable<Citizen>>> GetThumbnailsAsync()
+        {
+            throw new NotImplementedException();
         }
 
         private async Task<Result<IEnumerable<Citizen>>> GetCitizensAsync()
@@ -42,5 +54,35 @@ namespace MarsCitizens.Services
 
             return Result.Ok(citizens);
         }
+
+        private async Task DownloadImageIfNotExistsAsync(string url)
+        {
+            var uri = new Uri(url);
+            string imageName = Path.GetFileName(uri.LocalPath);
+
+            var rootFolder = FileSystem.Current.LocalStorage;
+            if (!await IsImageExistsAsync(imageName)) {
+                var imageFile = await rootFolder.CreateFileAsync(imageName, CreationCollisionOption.ReplaceExisting);
+                await DownloadImageAsync(uri, imageFile);
+            }
+        }
+
+        private async Task<bool> IsImageExistsAsync(string imageName)
+        {
+            return await FileSystem.Current.LocalStorage.CheckExistsAsync(imageName) == ExistenceCheckResult.FileExists;
+        }
+
+        private static async Task DownloadImageAsync(Uri uri, IFile file)
+        {
+            using (var client = new HttpClient())
+            using (var fileHandler = await file.OpenAsync(FileAccess.ReadAndWrite)) {
+                var httpResponse = await client.GetAsync(uri);
+                byte[] dataBuffer = await httpResponse.Content.ReadAsByteArrayAsync();
+                await fileHandler.WriteAsync(dataBuffer, 0, dataBuffer.Length);
+            }
+        }
+
+
+
     }
 }
