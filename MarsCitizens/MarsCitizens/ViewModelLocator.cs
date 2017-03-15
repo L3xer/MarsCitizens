@@ -5,7 +5,8 @@ using MarsCitizens.Contracts.Services;
 using MarsCitizens.Repositories;
 using MarsCitizens.Services;
 using MarsCitizens.ViewModels;
-
+using MarsCitizens.Persistence;
+using Xamarin.Forms;
 
 namespace MarsCitizens
 {
@@ -25,6 +26,8 @@ namespace MarsCitizens
         {
             _unityContainer = new UnityContainer()
                  .RegisterType<IDataService, DataService>()
+                 .RegisterType<ICitizenService, CitizenService>()
+                 .RegisterInstance<ISQLiteDb>(DependencyService.Get<ISQLiteDb>())
                  .RegisterType<ICitizensRepository, CitizensRepository>()
                  .RegisterType<IPhotoCameraRepository, PhotoCameraRepository>()
                  .RegisterType<MainViewModel>(new ContainerControlledLifetimeManager())

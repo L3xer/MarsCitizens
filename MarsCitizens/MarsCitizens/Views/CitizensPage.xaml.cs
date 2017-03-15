@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using MarsCitizens.ViewModels;
 using MarsCitizens.Models;
 

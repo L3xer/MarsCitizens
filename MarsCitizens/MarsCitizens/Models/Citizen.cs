@@ -1,9 +1,14 @@
 ﻿using System;
+using SQLite;
+
 
 namespace MarsCitizens.Models
 {
     public class Citizen
     {
+        [PrimaryKey, AutoIncrement]
+        public int? Id { get; set; }
+
         public string Name { get; set; }
 
         public string NormalizedName { get; set; }

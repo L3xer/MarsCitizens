@@ -1,30 +1,28 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SQLite;
 using MarsCitizens.Contracts.Repository;
-using MarsCitizens.Contracts.Services;
 using MarsCitizens.Extensions;
 using MarsCitizens.Models;
+using MarsCitizens.Persistence;
 
 namespace MarsCitizens.Repositories
 {
     public class CitizensRepository : ICitizensRepository
     {
-        private readonly string url = "https://dl.dropboxusercontent.com/s/vt4ra077675fve7/citiziens.json";
+        private SQLiteConnection dbConnection;
 
-        private IDataService _dataService;
-        private IEnumerable<Citizen> cache;
 
-        private bool IsCacheEmpty => cache == null || cache.Count() <= 0;
-
-        public CitizensRepository(IDataService dataService)
+        public CitizensRepository(ISQLiteDb sqliteDb)
         {
-            if (dataService == null)
-                throw new ArgumentException(nameof(dataService));
+            dbConnection = dbConnection ?? sqliteDb.GetConnection("user.db");
 
-            _dataService = dataService;
+            dbConnection.CreateTable<Citizen>();
         }
+
+        public bool HasCitizensLocally => Task.Run(() => GetCountAsync()).Result.Value > 0;
+
 
         public async Task<Result<IEnumerable<Citizen>>> GetAllAsync()
         {
@@ -44,15 +42,15 @@ namespace MarsCitizens.Repositories
             return Result.Ok(result.Value.Count());
         }
 
+        public void SaveCitizens(IEnumerable<Citizen> citizens)
+        {
+            dbConnection.InsertAll(citizens);
+        }
+
         private async Task<Result<IEnumerable<Citizen>>> GetCitizensAsync()
         {
-            if (IsCacheEmpty)
-                cache = (await _dataService.GetAsync<List<Citizen>>(url))?.OrderByDescending(x => x.LandingDate);
-
-            if (IsCacheEmpty)
-                return Result.Fail<IEnumerable<Citizen>>("Network problems. Please try again later.");           
-
-            return Result.Ok(cache);
+            IEnumerable<Citizen> citizens = await Task.Run(() => dbConnection.Table<Citizen>().ToList());
+            return Result.Ok(citizens);
         }
     }
 }

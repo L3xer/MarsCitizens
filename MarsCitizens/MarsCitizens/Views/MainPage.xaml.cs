@@ -23,7 +23,10 @@ namespace MarsCitizens.Views
 
         private async Task GetCitiziensDataAsync()
         {
-            var result = await _viewModel.GetCitiziensCountAsync();
+            var result = await _viewModel.LoadAllCitizensAsync();
+
+            if (!result.IsFailure)
+                result = await _viewModel.GetCitiziensCountAsync();
 
             if (result.IsFailure)
                 await DisplayAlert("Mars Citizens", "Something went wrong. Please check your network connection and tap on screen to refresh.", "Close");
